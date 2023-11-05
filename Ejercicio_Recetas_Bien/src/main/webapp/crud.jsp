@@ -71,6 +71,14 @@ if (request.getAttribute("recetas") != null) {
 			</tr>
 		</thead>
 		<tbody>
+		<% for(Receta elemento:listaRecetasVista){%>
+            <tr>
+                <td><%=elemento.getId()%></td>
+                <td><%=elemento.getNombre()%></td>
+                <td><%=elemento.getFk_estilo()%></td>
+                <td><%=elemento.getFk_dificultad()%></td>
+            </tr>
+         <%}%>  
 		</tbody>
 	</table>
 </body>

@@ -1,0 +1,25 @@
+--PASOS JSP--
+
+1- Crear base de datos y rellenar con algunos campos. 
+
+2- Crear proyecto web dinámico y mavenizar (configure -> convert to maven). 
+
+3- Añadir el conector de mysql al pom. Ahorra añadir el archivo al proyecto. En web-inf añadir
+el archivo web.xml si no está y hacer que el welcome file apunte al controlador de la main page.
+
+4- Crear paquetes (MVC): controlador, modelo, modelo.dto 
+
+5- Crear DB_Helper para toda conexión y consulta a la bbdd. 
+
+6- Crear interfaz DAO para las variables. 
+
+7- En dto, añadir una clase de Java por tabla y vista y ponerles constructores, getters y setters. 
+
+8- Crear servlets, que obtienen las listas a partir de las consultas a la bbdd y crean
+los objetos cuando se rellenan datos en el formulario.
+
+9- Con request, mandar las listas a la vista jsp correspondiente.
+
+10- En los jsp, recuperar las listas comprobando que no sean nulas. 
+
+11- Añadir a los jsp los formularios. Indicar en action el nombre del controlador correspondiente.
