@@ -50,9 +50,8 @@ public class CrearReceta extends HttpServlet implements DAO {
 		Receta rece = new Receta(0, nombre, fk_dificultad, fk_estilo); 
 		DB_Helper db = new DB_Helper();
 		Connection con = db.connect();
-		
 		db.nuevaReceta(con, rece);
-		
+		//recarga
 		List<Dificultad> listaDificultades= db.obtenerDificultades(con);
 		List<Estilo> listaEstilos= db.obtenerEstilos(con);
 		List<Receta> listaRecetas= db.obtenerRecetas(con);

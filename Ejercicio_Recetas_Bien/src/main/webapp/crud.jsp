@@ -28,6 +28,7 @@ if (request.getAttribute("recetas") != null) {
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="estilos/styles.css"/>
 <title>Web de recetas</title>
 </head>
 <body>
@@ -56,7 +57,7 @@ if (request.getAttribute("recetas") != null) {
 	<nav>
 		<ul>
 			<li><a href="ControladorInicio">INICIO</a></li>
-			<li><a href="ControladorDificultades">DIFICULTADES</a></li>
+			<li><a href="ControladorDificultad">DIFICULTADES</a></li>
 			<li><a href="ControladorEstilo">ESTILOS</a></li>
 		</ul>
 	</nav>

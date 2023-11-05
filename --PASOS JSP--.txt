@@ -15,8 +15,7 @@ el archivo web.xml si no está y hacer que el welcome file apunte al controlador
 
 7- En dto, añadir una clase de Java por tabla y vista y ponerles constructores, getters y setters. 
 
-8- Crear servlets, que obtienen las listas a partir de las consultas a la bbdd y crean
-los objetos cuando se rellenan datos en el formulario.
+8- Crear servlets, que obtienen las listas a partir de las consultas a la bbdd y crean los objetos cuando se rellenan datos en el formulario.
 
 9- Con request, mandar las listas a la vista jsp correspondiente.
 

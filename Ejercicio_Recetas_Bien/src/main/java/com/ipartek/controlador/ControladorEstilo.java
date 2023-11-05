@@ -35,10 +35,8 @@ public class ControladorEstilo extends HttpServlet implements DAO {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DB_Helper db = new DB_Helper();
 		Connection con = db.connect();
-
 		List<Estilo> listaEstilos = db.obtenerEstilos(con);
 		db.disconnect(con);
-
 		request.setAttribute("estilos", listaEstilos);
 		request.getRequestDispatcher("get_estilos.jsp").forward(request, response);
 	}
