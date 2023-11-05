@@ -31,6 +31,6 @@ public interface DAO {
 	String SP_INSERTAR_RECETA = "call sp_insertar_receta(?, ?, ?);";
 	String SP_OBTENER_DIFICULTADES = "call sp_obtener_dificultades();";
 	String SP_OBTENER_ESTILOS = "call sp_obtener_estilos();";
-	String SP_OBTENER_RECETAS = "call sp_obtener_vista_todas_recetas();";
+	String SP_OBTENER_RECETAS = "SELECT * FROM recetas;";
 	//
 }

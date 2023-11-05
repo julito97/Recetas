@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.ipartek.modelo.dto.Dificultad;
@@ -51,10 +52,8 @@ public class DB_Helper implements DAO {
 
 			while (rs.next()) {
 				Dificultad dificultad = new Dificultad();
-
 				dificultad.setId(rs.getInt(DIFICULTADES_ID));
 				dificultad.setDificultad(rs.getString(DIFICULTADES_DIFICULTAD));
-
 				dificultades.add(dificultad);
 			}
 			System.out.println("LISTA DE DIFICULTADES OBTENIDA");
@@ -77,10 +76,8 @@ public class DB_Helper implements DAO {
 
 			while (rs.next()) {
 				Estilo estilo = new Estilo();
-
 				estilo.setId(rs.getInt(ESTILOS_ID));
 				estilo.setEstilo(rs.getString(ESTILOS_ESTILO));
-
 				estilos.add(estilo);
 			}
 			System.out.println("LISTA DE ESTILOS OBTENIDA");
@@ -111,7 +108,7 @@ public class DB_Helper implements DAO {
 				recetas.add(aux);
 			}
 		} catch (SQLException e) {
-			System.out.println("Se produjo un error: " + e.getLocalizedMessage());
+			System.out.println("Se produjo el siguiente error: " + e.getLocalizedMessage());
 		}
 		return recetas;
 	}
@@ -121,9 +118,15 @@ public class DB_Helper implements DAO {
 			CallableStatement cStmt = con.prepareCall(SP_INSERTAR_DIFICULTAD);
 			cStmt.setString(1, dificultad.getDificultad());
 			cStmt.execute();
-			System.out.println("SE INSERTÓ EL ESTILO: " + dificultad);
+			System.out.println("SE INSERTÓ EL ESTILO: " + dificultad.toString());
+			con.commit();
 		} catch (SQLException e) {
 			System.out.println("NO SE INSERTÓ EL ESTILO: " + e.getLocalizedMessage());
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 	
@@ -134,11 +137,17 @@ public class DB_Helper implements DAO {
 			cStmt.setString(1, rece.getNombre());
 			cStmt.setInt(2, rece.getFk_dificultad());
 			cStmt.setInt(3, rece.getFk_estilo());
-			cStmt.execute();
-			System.out.println("SE INSERTO LA RECETA: " + rece);
-		} catch (SQLException e) {
-			System.out.println("NO SE INSERTO LA RECETA:");
+			cStmt.executeUpdate(); 
+			System.out.println("SE INSERTÓ LA RECETA: " + rece.toString());
+			con.commit(); //sin commit no se inserta en la base de datos, sólo en la lista visible en el jsp
+		} catch (Exception e) {
+			System.out.println("NO SE INSERTÓ LA RECETA:");
 			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -147,10 +156,16 @@ public class DB_Helper implements DAO {
 			CallableStatement cStmt = con.prepareCall(SP_INSERTAR_ESTILO);
 			cStmt.setString(1, esti.getEstilo());
 			cStmt.execute();
-			System.out.println("SE INSERTO EL ESTILO: " + esti);
+			System.out.println("SE INSERTÓ EL ESTILO: " + esti.toString());
+			con.commit();
 		} catch (SQLException e) {
-			System.out.println("NO SE INSERTO EL ESTILO:");
+			System.out.println("NO SE INSERTÓ EL ESTILO: ");
 			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 }
