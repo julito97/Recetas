@@ -96,7 +96,7 @@ public class DB_Helper implements DAO {
 		List<Receta> recetas = new ArrayList<Receta>();
 
 		try {
-			CallableStatement cStmt = con.prepareCall(SP_OBTENER_RECETAS);
+			CallableStatement cStmt = con.prepareCall("SELECT * FROM recetas");
 
 			cStmt.execute();
 
@@ -108,9 +108,6 @@ public class DB_Helper implements DAO {
 				aux.setNombre(rs.getString(2));
 				aux.setFk_dificultad(rs.getInt(3));
 				aux.setFk_estilo(rs.getInt(4));
-				aux.setFk_dificultad(rs.getInt(5));
-				aux.setFk_estilo(rs.getInt(6));
-
 				recetas.add(aux);
 			}
 		} catch (SQLException e) {
@@ -124,9 +121,9 @@ public class DB_Helper implements DAO {
 			CallableStatement cStmt = con.prepareCall(SP_INSERTAR_DIFICULTAD);
 			cStmt.setString(1, dificultad.getDificultad());
 			cStmt.execute();
-			System.out.println("SE INSERTO EL ESTILO: " + dificultad);
+			System.out.println("SE INSERTÓ EL ESTILO: " + dificultad);
 		} catch (SQLException e) {
-			System.out.println("NO SE INSERTO EL ESTILO: " + e.getLocalizedMessage());
+			System.out.println("NO SE INSERTÓ EL ESTILO: " + e.getLocalizedMessage());
 		}
 	}
 	

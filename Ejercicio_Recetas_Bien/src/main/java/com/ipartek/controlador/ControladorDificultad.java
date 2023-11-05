@@ -35,13 +35,20 @@ public class ControladorDificultad extends HttpServlet implements DAO {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		DB_Helper db = new DB_Helper();
+		Connection con = db.connect();
+		List<Dificultad> listaDificultades = db.obtenerDificultades(con);
+		db.disconnect(con);
+		request.setAttribute("dificultades", listaDificultades);
+		request.getRequestDispatcher("get_dificultades.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

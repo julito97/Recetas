@@ -18,7 +18,7 @@ import com.ipartek.modelo.dto.Receta;
  * Servlet implementation class CrearReceta
  */
 @WebServlet("/CrearReceta")
-public class CrearReceta extends HttpServlet implements DAO{
+public class CrearReceta extends HttpServlet implements DAO {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -26,7 +26,6 @@ public class CrearReceta extends HttpServlet implements DAO{
      */
     public CrearReceta() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
