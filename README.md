@@ -1,2 +1,2 @@
 # Recetas
-CRUD básico hecho con JSP.
+CR básico hecho con JSP.
